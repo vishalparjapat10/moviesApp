@@ -60,7 +60,34 @@
   margin-right:5vw;
   overflow: hidden;
 }
+.movies-list{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  justify-content: center;
+}
+.movie-card{
+  width: 20vw;
+  color: white;
+  margin: 1rem;
+  position: relative;
+}
 
+.movie-title{
+  position:absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.movie-button{
+  position: absolute;
+  top: 80%;
+}
+
+.button-wrapper{
+  display: flex;
+  justify-content: center;
+}
 @media screen and
 (max-width:400px){
   .banner-card{
