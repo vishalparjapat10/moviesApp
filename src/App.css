@@ -38,5 +38,44 @@
 }
 
 .banner-card{
-  background-color: lightcoral;
+  background-color: white;
+  width: 100vw;
+}
+.banner-img{
+  height: 80vh;
+  width: 100%;
+}
+.banner-title{
+  position: absolute;
+  color: white;
+  top: 55vh;
+  left: 5vw;
+  font-size: 2rem;
+}
+.banner-text{
+  position: absolute;
+  color: white;
+  top: 65vh;
+  left: 5vw;
+  margin-right:5vw;
+  overflow: hidden;
+}
+
+@media screen and
+(max-width:400px){
+  .banner-card{
+    height: 25vh;
+  }
+
+  .banner-img{
+    height: 30vh;
+  }
+  .banner-title{
+    top: 20vh;
+    left: 5vw;
+  }
+  .banner-title{
+    top: 15vh;
+    left: 5vw;
+  }
 }

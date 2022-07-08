@@ -19,11 +19,11 @@ export default class Banner extends Component {
                   className="card-img-top banner-img"
                   alt="..."
                 />
-          <div className="card-body">
-            <h5 className="card-title">{movie.original_title}</h5>
-            <p className="card-text">{movie.overview}</p>
-            <a href="#" className="btn btn-primary">Go somewhere</a>
-          </div>
+          {/* <div className="card-body banner-title"> */}
+            <h5 className="card-title banner-title">{movie.original_title}</h5>
+            <p className="card-text banner-text">{movie.overview}</p>
+            {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
+          {/* </div> */}
         </div>
       }
     </>
