@@ -88,6 +88,13 @@
   display: flex;
   justify-content: center;
 }
+
+.pagination{
+  display: flex;
+  justify-content: center;
+}
+
+/* upto i.e 0 to 400px */
 @media screen and
 (max-width:400px){
   .banner-card{
