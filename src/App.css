@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
 }
@@ -37,6 +39,15 @@
   }
 }
 
+.navbar{
+  display: flex;
+  background: url('./Components/images/body-bg.gif');
+  color: #d91d2a;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
 .banner-card{
   background-color: white;
   width: 100vw;
@@ -60,11 +71,19 @@
   margin-right:5vw;
   overflow: hidden;
 }
+.text-center{
+  background: url('./Components/images/body-bg.gif');
+  color: #d91d2a;
+}
+
 .movies-list{
   display: flex;
   flex-wrap: wrap;
   padding: 1rem;
   justify-content: center;
+  background: url('./Components/images/body-bg.gif');
+  position: relative;
+  top: -8px;
 }
 .movie-card{
   width: 20vw;
@@ -82,6 +101,17 @@
 .movie-button{
   position: absolute;
   top: 80%;
+  color: #fff;
+  background-color: #d91d2a;
+  transition-duration: 0.3s;
+}
+.movie-button:hover{
+  color: #d91d2a;
+  background-color: #fff;
+  outline: none;
+}
+.movie-button:focus{
+  outline: none;
 }
 
 .button-wrapper{
