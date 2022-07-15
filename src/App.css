@@ -104,14 +104,13 @@
   color: #fff;
   background-color: #d91d2a;
   transition-duration: 0.3s;
+  outline: none;
+  border: none;
 }
 .movie-button:hover{
   color: #d91d2a;
   background-color: #fff;
-  outline: none;
-}
-.movie-button:focus{
-  outline: none;
+  
 }
 
 .button-wrapper{
