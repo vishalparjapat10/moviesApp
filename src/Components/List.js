@@ -1,4 +1,4 @@
-import { hover } from '@testing-library/user-event/dist/hover';
+// import { hover } from '@testing-library/user-event/dist/hover';
 import React, { Component } from 'react'
 // import { movies } from './getMovies'
 import axios from 'axios';
@@ -31,16 +31,17 @@ export default class List extends Component {
 
   async componentDidMount(){
     // console.log("component did mount is called");
-    let res = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.state.currPage}`)
-    this.setState = ({
-        movies: [...res.data.results]
-    });
-    console.log(this.state.movies);
+    let ans = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.state.currPage}`);
+    
+    this.setState({
+        movies: [...ans.data.results], //[{},{},{}]
+      });
   }
 
   render() {
     // console.log("render is called");
     // let movie = movies.results;
+    // console.log("Movies in render",this.state.movies);
     return (
       <>
         {
