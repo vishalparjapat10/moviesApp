@@ -24,7 +24,7 @@ export default class Favourites extends Component {
                         27:'Horror',10402:'Music',9648:'Mystery',10749:'Romance',878:'Sci-Fi',10770:'TV',53:'Thriller',10752:'War',37:'Western'}
     return (
         <div class="row">
-            <div class="col-3">
+            <div class="col-3 favourites-list">
                 <ul class="list-group">
                     <li class="list-group-item active" aria-current="true">All Genres</li>
                     <li class="list-group-item">Fantasy</li>
@@ -32,10 +32,10 @@ export default class Favourites extends Component {
                     <li class="list-group-item">Horror</li>
                 </ul>
             </div>
-            <div class="col">
+            <div class="col favourites-table">
                 <div className='row'>
-                    <input type='text' className='col' placeholder='Search'></input>
-                    <input type='number' className='col' placeholder='5'c></input>
+                    <input type='text' className='col-8' placeholder='Search'></input>
+                    <input type='number' className='col-4' placeholder='5'c></input>
                 </div>
                 <div className='row'>
                     <table class="table">
@@ -59,6 +59,7 @@ export default class Favourites extends Component {
                                         <td>{genreId[movieObj.genre_ids[0]]}</td>
                                         <td>{movieObj.popularity}</td>
                                         <td>{movieObj.vote_average}</td>
+                                        <td><button className='btn btn-outline-danger'>Delete</button></td>
                                     </tr>
                                 ))
                             }

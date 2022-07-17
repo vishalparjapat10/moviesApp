@@ -127,6 +127,13 @@
   cursor: pointer;
 }
 
+.favourites-list{
+  padding: 3rem;
+}
+.favourites-table{
+  padding: 3rem;
+}
+
 /* upto i.e 0 to 400px */
 @media screen and
 (max-width:400px){
