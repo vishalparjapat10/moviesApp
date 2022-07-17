@@ -130,12 +130,12 @@ export default class List extends Component {
                         <div className='pagination'>
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" onClick={this.handlePrevious}>Previous</a></li>
+                                    <li class="page-item"><a class="page-link" onClick={this.handlePrevious} >Previous</a></li>
                                     {this.state.parr.map((pageNum) => (
                                             <li class="page-item"><a class="page-link" onClick={() => {this.handlePageNo(pageNum)}}>{pageNum}</a></li>
                                         ))}
                                     
-                                    <li class="page-item"><a class="page-link" onClick={this.handleNext}>Next</a></li>
+                                    <li class="page-item"><a class="page-link" onClick={this.handleNext} >Next</a></li>
                                 </ul>
                             </nav>
                         </div>
