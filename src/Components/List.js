@@ -21,25 +21,73 @@ export default class List extends Component {
         this.setState({
           hover:id
       })
-  };
+    };
 
-  handleLeave = () => {
-      this.setState({
-        hover: '',
-      });
-  };
+    handleLeave = () => {
+        this.setState({
+            hover: '',
+        });
+    };
 
-  async componentDidMount(){
-    // console.log("component did mount is called");
-    let ans = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.state.currPage}`);
-    
-    this.setState({
-        movies: [...ans.data.results], //[{},{},{}]
-      });
-  }
+    changeMovies = async () =>{
+        console.log(this.state.currPage);
+        let ans = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.state.currPage}`);
+        console.log("changeMovies");
+        this.setState({
+            movies: [...ans.data.results], //[{},{},{}]
+        });
+    }
+
+    handleNext = () =>{
+        let tempArr = [];
+        for(let i = 1;i <= this.state.parr.length + 1;i++){
+            tempArr.push(i);// [1,2]
+        }
+        this.setState({
+            parr: [...tempArr],
+            currPage: this.state.currPage + 1
+        },this.changeMovies);
+        // console.log(this.state.currPage);// this.setState is an asynchronous function, so we try to print any value which is just being updating might not show yet, so wew ill pass changeMovies function as a callback so that when currPage value is updated this function will be called
+    }
+
+    handlePrevious = () =>{
+        let tempArr = [];
+        if(this.state.parr.length == 1){
+            tempArr.push(1);
+        }
+        else{
+            for(let i = 1;i <= this.state.parr.length + 1;i++){
+            tempArr.push(i);// [1,2]
+            }
+            for(let i = this.state.parr.length ;i >= this.state.parr.length - 1;i--){
+                tempArr.pop(i);
+            }
+        }
+        
+        this.setState({
+            parr: [...tempArr],
+            currPage: this.state.currPage -1
+        },this.changeMovies);
+        // console.log(this.state.currPage);// this.setState is an asynchronous function, so we try to print any value which is just being updating might not show yet, so wew ill pass changeMovies function as a callback so that when currPage value is updated this function will be called
+    }
+
+    handlePageNo = (pNo) =>{
+        this.setState({
+            currPage: pNo
+        },this.changeMovies)
+    }
+
+    async componentDidMount(){
+        console.log("component did mount is called");
+        let ans = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.state.currPage}`);
+        
+        this.setState({
+            movies: [...ans.data.results], //[{},{},{}]
+        });
+    }
 
   render() {
-    // console.log("render is called");
+    console.log("render is called");
     // let movie = movies.results;
     // console.log("Movies in render",this.state.movies);
     return (
@@ -82,12 +130,12 @@ export default class List extends Component {
                         <div className='pagination'>
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                    <li class="page-item"><a class="page-link" onClick={this.handlePrevious}>Previous</a></li>
                                     {this.state.parr.map((pageNum) => (
-                                            <li class="page-item"><a class="page-link" href="#">{pageNum}</a></li>
+                                            <li class="page-item"><a class="page-link" onClick={() => {this.handlePageNo(pageNum)}}>{pageNum}</a></li>
                                         ))}
                                     
-                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                    <li class="page-item"><a class="page-link" onClick={this.handleNext}>Next</a></li>
                                 </ul>
                             </nav>
                         </div>
