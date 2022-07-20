@@ -5,16 +5,18 @@ import Banner from './Components/Banner';
 import React from 'react';
 import List from './Components/List';
 import Favourites from './Components/Favourites';
+import { BrowserRouter,Route,Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <>
-      {/* <Navbar/>
-      <Banner/>
-      <List/> */}
+    <BrowserRouter>
       <Navbar/>
-      <Favourites/>
-    </>
+      <Routes>
+        <Route path="/" element={<List/>}/>
+        <Route path="/fav" element={<Favourites/>}/>
+      </Routes>
+      <Banner/>
+    </BrowserRouter>
     
   );
 }
