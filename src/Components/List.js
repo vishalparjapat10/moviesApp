@@ -99,14 +99,19 @@ export default class List extends Component {
     async componentDidMount(){
         console.log("component did mount is called");
         let ans = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.state.currPage}`);
-        
+        let tempData = JSON.parse(localStorage.getItem("movies")) || [];
+        console.log(tempData);
+        let favouritesMovies = tempData.map(movieObj => movieObj.id);
         this.setState({
             movies: [...ans.data.results], //[{},{},{}]
+            favMov: [...favouritesMovies]
+    
         });
     }
 
   render() {
     console.log("render is called");
+    console.log(this.state.favMov);
     // let movie = movies.results;
     // console.log("Movies in render",this.state.movies);
     return (

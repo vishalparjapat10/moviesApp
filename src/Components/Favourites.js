@@ -13,21 +13,18 @@ export default class Favourites extends Component {
         }
     }
 
-     handleGenre = async (genre) =>{
-        let ans = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`);
+     handleCurrGenre = (genre) =>{
+        // let ans = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`);
+        let results = JSON.parse(localStorage.getItem("movies"));
         let genreId={28:'Action',12:'Adventure',16:'Animation',35:'Comedy',80:'Crime',99:'Documentary',18:'Drama',10751:'Family',14:'Fantasy',36:'History',
                         27:'Horror',10402:'Music',9648:'Mystery',10749:'Romance',878:'Sci-Fi',10770:'TV',53:'Thriller',10752:'War',37:'Western'}
-        let updatedMovies = ans.data.results;
-        
-        
-        
-        console.log(genre);
+        let updatedMovies = results;
+
         let genreMovies;
         
         if(genre !== 'All Genres'){
-            genreMovies = updatedMovies.filter((movie) =>{
+            genreMovies = results.filter((movie) =>{
                 if(genreId[movie.genre_ids[0]] == genre){
-                    console.log("Movie = ",movie);
                     return movie;
                 }
             });
@@ -44,24 +41,26 @@ export default class Favourites extends Component {
     }
     async componentDidMount(){
         console.log("component did mount is called");
-        let ans = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`);
+        // let ans = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`);
+        let results = JSON.parse(localStorage.getItem("movies")) || [];
         let genreId={28:'Action',12:'Adventure',16:'Animation',35:'Comedy',80:'Crime',99:'Documentary',18:'Drama',10751:'Family',14:'Fantasy',36:'History',
                         27:'Horror',10402:'Music',9648:'Mystery',10749:'Romance',878:'Sci-Fi',10770:'TV',53:'Thriller',10752:'War',37:'Western'}
         let genreArr = [];
-        ans.data.results.map((movieObj) =>{
+        results.map((movieObj) =>{
             if(!genreArr.includes(genreId[movieObj.genre_ids[0]])){
                 genreArr.push(genreId[movieObj.genre_ids[0]])
             }
         });
         genreArr.unshift("All Genres");
         this.setState({
-            movies: [...ans.data.results], //[{},{},{}]
+            movies: [...results], //[{},{},{}]
             genre: [...genreArr]
         });
 
-        console.log('genre array = ',genreArr);
     }
   render() {
+
+    
     let genreId={28:'Action',12:'Adventure',16:'Animation',35:'Comedy',80:'Crime',99:'Documentary',18:'Drama',10751:'Family',14:'Fantasy',36:'History',
                         27:'Horror',10402:'Music',9648:'Mystery',10749:'Romance',878:'Sci-Fi',10770:'TV',53:'Thriller',10752:'War',37:'Western'}
     return (
@@ -75,7 +74,7 @@ export default class Favourites extends Component {
                                 {genre}
                             </li> :
                             
-                            <li class="list-group-item" aria-current="true" onClick={() => this.handleGenre(genre)}>{genre}</li>
+                            <li class="list-group-item" aria-current="true" onClick={() => this.handleCurrGenre(genre)}>{genre}</li>
                         ))
                     }
                 </ul>
