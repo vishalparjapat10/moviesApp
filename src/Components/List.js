@@ -14,6 +14,7 @@ export default class List extends Component {
             parr:[1],// ab tak m konse page pr hu, or what page result am i showing
             currPage:1,
             movies:[],
+            favMov:[] // will store movies which are added to favourites
         }
     }
 
@@ -77,6 +78,24 @@ export default class List extends Component {
         },this.changeMovies)
     }
 
+    handleFavourites = (movieObj) =>{
+        let localStorageMovies = JSON.parse(localStorage.getItem("movies")) || [];
+       
+        if(this.state.favMov.includes(movieObj.id)){
+            localStorageMovies = localStorageMovies.filter(movie => movie.id != movieObj.id);
+        }
+        else{
+            localStorageMovies.push(movieObj);
+        }
+        console.log(localStorageMovies);
+        localStorage.setItem("movies",JSON.stringify(localStorageMovies));
+        let tempData = localStorageMovies.map(movieObj => movieObj.id);
+
+        this.setState({
+            favMov:[...tempData]
+        })
+
+    }
     async componentDidMount(){
         console.log("component did mount is called");
         let ans = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.state.currPage}`);
@@ -119,7 +138,9 @@ export default class List extends Component {
                                         <div className='button-wrapper'>
                                             {
                                                 this.state.hover == movieObj.id && 
-                                                <a href="#" className="btn btn-primary movie-button">Add to Favourites</a>
+                                                <a className="btn btn-primary movie-button" onClick={() => {this.handleFavourites(movieObj)}}>
+                                                    {this.state.favMov.includes(movieObj.id) ? "Remove from Favourites" : "Add to Favourites"  } 
+                                                </a>
                                             }
                                             
                                         </div>
