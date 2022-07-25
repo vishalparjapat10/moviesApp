@@ -97,7 +97,8 @@ export default class Favourites extends Component {
         });
         this.setState({
             movies: [...newMovies]
-        })
+        });
+        localStorage.setItem("movies", JSON.stringify(newMovies));
     }
   render() {
 
@@ -110,15 +111,15 @@ export default class Favourites extends Component {
         filteredMovies = this.state.movies;
     } else {
         filteredMovies = filteredMovies.filter((movieObj) => {
-        let movieName = movieObj.original_title.toLowerCase();
-        return movieName.includes(this.state.curText); //[t,o,p, ,g,u,n, ,m,a,v,e,r,i,c,k]
-     });
+            let movieName = movieObj.original_title.toLowerCase();
+            return movieName.includes(this.state.curText); //[t,o,p, ,g,u,n, ,m,a,v,e,r,i,c,k]
+        });
     }
                     
     if (this.state.curGenre != "All Genres") {
-        filteredMovies = filteredMovies.filter((movieObj) => 
-            genreId[movieObj.genre_ids[0]] == this.state.curGenre
-        );
+        filteredMovies = filteredMovies.filter((movieObj) =>{
+            return genreId[movieObj.genre_ids[0]] == this.state.curGenre
+        });
     }
                     
     let numOfPages = Math.ceil(filteredMovies.length / this.state.limit);
