@@ -9,7 +9,8 @@ export default class Favourites extends Component {
         this.state = {
             movies:[],
             genre:[],
-            curGenre:"All Genres"
+            curGenre:"All Genres",
+            curText: ""
         }
     }
 
@@ -39,6 +40,53 @@ export default class Favourites extends Component {
             movies: [...genreMovies]
         })
     }
+
+    handleText = (e) =>{
+        if(this.state.curText == ''){
+
+        }
+        this.setState({
+            curText: e.target.value
+        })
+    }
+
+    sortPopularityAsc = () =>{
+        let allMovies = this.state.movies;
+        allMovies.sort((objA,objB) =>{
+            return objA.popularity - objB.popularity;
+        });
+        this.setState({
+            movies: [...allMovies]
+        })
+    }
+    sortPopularityDesc = () =>{
+        let allMovies = this.state.movies;
+        allMovies.sort((objA,objB) =>{
+            return objB.popularity - objA.popularity;
+        });
+        this.setState({
+            movies: [...allMovies]
+        })
+    }
+    sortRatingAsc = () =>{
+        let allMovies = this.state.movies;
+        allMovies.sort((objA,objB) =>{
+            return objA.vote_average - objB.vote_average;
+        });
+        this.setState({
+            movies: [...allMovies]
+        })
+    }
+    sortRatingDesc = () =>{
+        let allMovies = this.state.movies;
+        allMovies.sort((objA,objB) =>{
+            return objB.vote_average - objA.vote_average;
+        });
+        this.setState({
+            movies: [...allMovies]
+        })
+    }
+
     async componentDidMount(){
         console.log("component did mount is called");
         // let ans = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`);
@@ -70,18 +118,18 @@ export default class Favourites extends Component {
                     {
                         this.state.genre.map((genre)=>(
                             this.state.curGenre == genre ?
-                            <li class="list-group-item active" aria-current="true">
+                            <li class="list-group-item active" aria-current="true" style={{cursor:'pointer'}}>
                                 {genre}
                             </li> :
                             
-                            <li class="list-group-item" aria-current="true" onClick={() => this.handleCurrGenre(genre)}>{genre}</li>
+                            <li class="list-group-item" aria-current="true" style={{cursor:'pointer'}} onClick={() => this.handleCurrGenre(genre)}>{genre}</li>
                         ))
                     }
                 </ul>
             </div>
             <div class="col favourites-table">
                 <div className='row'>
-                    <input type='text' className='col-8' placeholder='Search'></input>
+                    <input type='text' className='col-8' placeholder='Search' value={this.state.curText} onChange={this.handleText}></input>
                     <input type='number' className='col-4' placeholder='5'c></input>
                 </div>
                 <div className='row'>
@@ -90,8 +138,16 @@ export default class Favourites extends Component {
                             <tr>
                                 <th scope="col">Title</th>
                                 <th scope="col">Genre</th>
-                                <th scope="col">Popularity</th>
-                                <th scope="col">Rating</th>
+                                <th scope="col" style={{cursor:'pointer'}}>
+                                    <i class="fa-solid fa-caret-up" onClick={this.sortPopularityAsc}/>
+                                        Popularity
+                                    <i class="fa-solid fa-caret-down" onClick={this.sortPopularityDesc }/>
+                                </th>
+                                <th scope="col" style={{cursor:'pointer'}}>
+                                    <i class="fa-solid fa-caret-up" onClick={this.sortRatingAsc}/>
+                                        Rating
+                                    <i class="fa-solid fa-caret-down" onClick={this.sortRatingDesc}/>
+                                </th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
