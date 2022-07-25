@@ -38,7 +38,9 @@
     transform: rotate(360deg);
   }
 }
-
+html{
+  background: url('./Components/images/body-bg.gif');
+}
 .navbar{
   display: flex;
   background: url('./Components/images/body-bg.gif');
@@ -125,6 +127,10 @@
 
 .page-link{
   cursor: pointer;
+}
+
+.favourites{
+  background: url('./Components/images/body-bg.gif');
 }
 
 .favourites-list{

@@ -110,9 +110,7 @@ export default class List extends Component {
     }
 
   render() {
-    console.log("render is called");
-    console.log(this.state.favMov);
-    // let movie = movies.results;
+    // console.log("render is called");
     // console.log("Movies in render",this.state.movies);
     return (
       <>

@@ -131,13 +131,13 @@ export default class Favourites extends Component {
     let ei = si + this.state.limit - 1;
     filteredMovies = filteredMovies.slice(si, ei + 1);
     return (
-        <div class="row">
+        <div class="row favourites">
             <div class="col-3 favourites-list">
                 <ul class="list-group">
                     {
                         this.state.genre.map((genre)=>(
                             this.state.curGenre == genre ?
-                            <li class="list-group-item active" aria-current="true" style={{cursor:'pointer'}}>
+                            <li class="list-group-item active" aria-current="true" style={{cursor:'pointer',backgroundColor:'black',border:'none',color:'#d91d2a'}}>
                                 {genre}
                             </li> :
                             
@@ -152,7 +152,7 @@ export default class Favourites extends Component {
                     <input type='number' className='col-4' value={this.state.limit} onChange={(e) => this.setState({limit:e.target.value})}></input>
                 </div>
                 <div className='row'>
-                    <table class="table">
+                    <table class="table" style={{color:'#fff',border:'1px solid #fff'}}>
                         <thead>
                             <tr>
                                 <th scope="col">Title</th>
