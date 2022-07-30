@@ -12,3 +12,5 @@ MoviesApp can be thought as an app on which different latest movies are rendered
   * second page is for **Favourites** movies section which contain all the added by user from the first page movies. 
 * on first page there is option add one or more movies as **Favourites** which will be shown on **Favourites**.
 * **filtering,searching,sorting** is also done on **Favourites** page i.e we can filter out movies on the basis of genres, search any favourite movie, sort movie on the basis of **Popularity** or **Rating**. We can also **delete** any movie on the same page.
+
+## To run this project locally
