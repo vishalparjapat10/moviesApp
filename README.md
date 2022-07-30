@@ -21,4 +21,4 @@ $ cd ./moviesApp
 $ npm install
 $ npm start
 ```
-## Hosted Netlify link(https://isnt-vishalparjapat12527-gmail-com-awesome-9493a.netlify.app/) 
+### Hosted Netlify link(https://isnt-vishalparjapat12527-gmail-com-awesome-9493a.netlify.app/) 
