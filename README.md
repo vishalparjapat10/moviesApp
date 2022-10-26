@@ -4,7 +4,7 @@
 MoviesApp is a `react.js` based application which has been developed using **class based components**. As a fan of **Hollywood movies** & **React**, always wanted to develop an app by doing which I can gain knowledge with fun. It was developed to grasp much better understanding & to dig deep into **class based components**
 
 ## Description
-MoviesApp can be thought as an app on which different latest movies are rendered with different functionality provided.[TMDB](https://www.themoviedb.org/) is used as an API for getting movies for this app. It includes following features :- 
+MoviesApp can be think as an app on which different latest movies are rendered with different functionality provided.[TMDB](https://www.themoviedb.org/) is used as an API for getting movies for this app. It includes following features :- 
 
 * the app basically similar to movie apps like `Netflix,Amazon Prime` etc. on which we can browse different movies(except watching).
 * it bascially contains 2 pages. 
